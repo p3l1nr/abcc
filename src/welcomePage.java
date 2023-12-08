@@ -1,37 +1,48 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class welcomePage extends JFrame{
-JFrame f;
-welcomePage(){
+public class welcomePage extends JFrame {
+    JFrame f;
 
-JButton b=new JButton("click");
-JPanel panel = new JPanel();
-b.setBounds(100,100,100, 100);
-    b.setBorderPainted(false);
-    b.setFocusPainted(false);
-    b.setContentAreaFilled(false);
-add(panel);
-panel.add(b);
-panel.setSize(400,500);
-panel.setBackground(Color.black);
-panel.setVisible(true);
-panel.setLayout(null);
+    welcomePage( ) {
 
-
-setSize(400,500);
-setLayout(null);
-setVisible(true);
-setBackground(Color.black);
-setLocationRelativeTo(null);
+        JButton b = new JButton( "click" );
+        JPanel panel = new JPanel( );
+        b.setBounds( 100, 100, 100, 100 );
+        b.setBorderPainted( false );
+        b.setFocusPainted( false );
+        b.setContentAreaFilled( false );
+        add( panel );
+        panel.add( b );
+        panel.setSize( 400, 500 );
+        panel.setBackground( Color.black );
+        panel.setVisible( true );
+        panel.setLayout( null );
 
 
-    b.addActionListener(e -> new GameFrame());
-}
+        setSize( 400, 500 );
+        setLayout( null );
+        setVisible( true );
+        setBackground( Color.black );
+        setLocationRelativeTo( null );
+        panel.setFocusable( true );
+        panel.requestFocusInWindow( );
 
-public static void main(String[] args) {
-new welcomePage();
-}
+        panel.addKeyListener( new KeyAdapter( ) {
+            public void keyPressed( KeyEvent e ) {
+                if ( e.getKeyCode( ) == KeyEvent.VK_ESCAPE ) {
+                    System.out.println( "Escape key pressed" );
+                    System.exit( 0 ); // terminate program
+                }
+            }
+        } );
+
+        b.addActionListener( e -> new GameFrame( ) );
+    }
+
+    public static void main( String[] args ) {
+        new welcomePage( );
+    }
 }
